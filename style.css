@@ -13,7 +13,7 @@ html, body{
     height: 100%;
     width: 100%;
     background-color: #222;
-    /* overflow: hidden; */
+    overflow: hidden;
     font-family: "poppins", sans-serif;
 }
 
@@ -187,8 +187,19 @@ html, body{
 
 @media screen and (max-height: 730px) {
     .app-container{
-        height: 85vh;
+        height: 84vh;
         bottom: 20px;
+    }
+    .search-box input{
+        height: 40px;
+        width: 30%;
+    }
+    #search{
+        width: 40px;
+        height: 40px;
+    }
+    #search img{
+        width: 12px;
     }
     #temp{
         font-size: 8vh;
