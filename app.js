@@ -35,7 +35,7 @@ async function checkWeather(city){
     else{
         setTimeout(()=>{
             updateData(data);
-        },100)
+        },200)
     }
 }
 
