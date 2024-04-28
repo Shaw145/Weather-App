@@ -33,66 +33,71 @@ async function checkWeather(city){
         document.getElementById("city-img").src = "images/weather.jpg";
     }
     else{
-
-        await generateImage(city);
-
-        //Update the weather data
-        document.querySelector("#city").textContent = data.name;
-        document.querySelector("#temp").textContent = Math.round(data.main.temp) +"°c";
-        document.querySelector(".humidity").textContent = data.main.humidity + '%';
-        document.querySelector(".wind").textContent = data.wind.speed + "Km/h";
-
-
-        //Change the Weather Icon
-        const weatherCondition = data.weather[0].main;
-
-        if(weatherCondition == 'Clear'){
-            weatherIcon.src = "images/clear.png"
-            document.querySelector("#condition").textContent = data.weather[0].main;
-        }
-        else if(weatherCondition == 'Clouds'){
-            weatherIcon.src = "images/clouds.png"
-            document.querySelector("#condition").textContent = data.weather[0].main;
-        }
-        else if(weatherCondition == 'Haze'){
-            weatherIcon.src = "images/drizzle.png"
-            document.querySelector("#condition").textContent = data.weather[0].main;
-        }
-        else if(weatherCondition == 'Mist'){
-            weatherIcon.src = "images/mist.png"
-            document.querySelector("#condition").textContent = data.weather[0].main;
-        }
-        else if(weatherCondition == 'Rain'){
-            weatherIcon.src = "images/rain.png"
-            document.querySelector("#condition").textContent = data.weather[0].main;
-        }
-        else if(weatherCondition == 'Snow'){
-            weatherIcon.src = "images/snow.png"
-            document.querySelector("#condition").textContent = data.weather[0].main;
-        }
-
-        document.querySelector(".weather").style.display = "block";
-        document.querySelector(".error").style.display = 'none';
-
+        setTimeout(()=>{
+            updateData(data);
+        },100)
     }
+}
+
+async function updateData(data){
+
+    //Update the weather data
+    document.querySelector("#city").textContent = data.name;
+    document.querySelector("#temp").textContent = Math.round(data.main.temp) +"°c";
+    document.querySelector(".humidity").textContent = data.main.humidity + '%';
+    document.querySelector(".wind").textContent = data.wind.speed + "Km/h";
+
+
+    //Change the Weather Icon
+    const weatherCondition = data.weather[0].main;
+
+    if(weatherCondition == 'Clear'){
+        weatherIcon.src = "images/clear.png"
+        document.querySelector("#condition").textContent = data.weather[0].main;
+    }
+    else if(weatherCondition == 'Clouds'){
+        weatherIcon.src = "images/clouds.png"
+        document.querySelector("#condition").textContent = data.weather[0].main;
+    }
+    else if(weatherCondition == 'Haze'){
+        weatherIcon.src = "images/drizzle.png"
+        document.querySelector("#condition").textContent = data.weather[0].main;
+    }
+    else if(weatherCondition == 'Mist'){
+        weatherIcon.src = "images/mist.png"
+        document.querySelector("#condition").textContent = data.weather[0].main;
+    }
+    else if(weatherCondition == 'Rain'){
+        weatherIcon.src = "images/rain.png"
+        document.querySelector("#condition").textContent = data.weather[0].main;
+    }
+    else if(weatherCondition == 'Snow'){
+        weatherIcon.src = "images/snow.png"
+        document.querySelector("#condition").textContent = data.weather[0].main;
+    }
+
+    document.querySelector(".weather").style.display = "block";
+    document.querySelector(".error").style.display = 'none';
 }
 
 //Default Call
 checkWeather("kolkata");
+generateImage("kolkata")
 
 
 //Image API call
 async function generateImage(city){
-
-    const response = await fetch(imageURL + city + `&client_id=${imageApiKey}`);
+    const response = await fetch(imageURL + city + `&client_id=${imageApiKey}`)
     const data = await response.json();
 
-    document.getElementById("city-img").src = data.results[0].urls.full;
+    const img = data.results[0].urls.full;
 
+    document.getElementById("city-img").src = img;
+    
 }
 
 
 searchBtn.addEventListener('click', (e)=>{
-    
-    checkWeather(searchBox.value);
+    generateImage(searchBox.value.trim());
+    checkWeather(searchBox.value.trim());
 })
