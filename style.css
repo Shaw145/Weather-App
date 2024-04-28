@@ -13,7 +13,7 @@ html, body{
     height: 100%;
     width: 100%;
     background-color: #222;
-    overflow: hidden;
+    /* overflow: hidden; */
     font-family: "poppins", sans-serif;
 }
 
@@ -164,8 +164,15 @@ html, body{
         gap: 20px;
     }
     .search-box input{
-        height: 60px;
+        height: 50px;
         width: 30%;
+    }
+    #search{
+        width: 50px;
+        height: 50px;
+    }
+    #search img{
+        width: 15px;
     }
     .col img{
         width: 30px;
@@ -175,5 +182,24 @@ html, body{
     }
     .col div:last-child{
         font-size: 12px;
+    }
+}
+
+@media screen and (max-height: 730px) {
+    .app-container{
+        height: 85vh;
+        bottom: 20px;
+    }
+    #temp{
+        font-size: 8vh;
+    }
+    #city{
+        font-size: 25px;
+    }
+    .details{
+        margin-top: 3vh;
+    }
+    .col div:last-child{
+        font-size: 1.5vh;
     }
 }
