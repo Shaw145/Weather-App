@@ -1,6 +1,7 @@
 const searchBox = document.querySelector(".search-box input");
 const searchBtn = document.querySelector("#search");
 const weatherIcon = document.querySelector(".weather-icon");
+const appContainer = document.querySelector(".app-container");
 
 
 const weatherApiKey = 'b2fa3271ab55c9c76e1b2a2d1afd0478';
@@ -29,13 +30,13 @@ async function checkWeather(city){
 
     if(response.status === 404){
         document.querySelector(".error").style.display = 'block';
-        document.querySelector(".weather").style.display = "none";
-        document.getElementById("city-img").src = "images/weather.jpg";
+        document.querySelector(".weather").style.visibility = "hidden";
+        appContainer.style.backgroundImage = `linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("images/weather.jpg")`;
     }
     else{
         setTimeout(()=>{
             updateData(data);
-        },200)
+        },500)
     }
 }
 
@@ -92,7 +93,7 @@ async function generateImage(city){
 
     const img = data.results[0].urls.full;
 
-    document.getElementById("city-img").src = img;
+    appContainer.style.backgroundImage = `linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url(${img})`;
     
 }
 
